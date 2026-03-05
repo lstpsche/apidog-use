@@ -6,7 +6,7 @@
     "name": "lstpsche"
   },
   "homepage": "https://github.com/lstpsche/apidog-mcp",
-  "repository": "https://github.com/lstpsche/apidog-cursor-plugin",
+  "repository": "https://github.com/lstpsche/apidog-use",
   "license": "MIT",
   "keywords": ["apidog", "openapi", "api-documentation", "mcp", "api"],
   "logo": "assets/logo.svg"
