@@ -66,6 +66,19 @@ Powered by [`@lstpsche/apidog-mcp`](https://www.npmjs.com/package/@lstpsche/apid
 |---|---|
 | **analyze-api-docs** | Run a full documentation quality audit on an Apidog module |
 
+## Limitations
+
+Some Apidog features are **not available** through this plugin due to Apidog's public API limitations:
+
+- **No direct endpoint CRUD** — endpoints are managed via OpenAPI spec import, not individual REST calls.
+- **No endpoint case CRUD** — cases are created via Postman collection import internally.
+- **Auto-generated empty "Success" cases** — Apidog always creates these on import; the MCP server detects and replaces them automatically.
+- **No folder/module management API** — folders are controlled via `x-apidog-folder` in imported specs.
+- **No test scenario editing** — only execution of existing scenarios is supported (via `apidog-cli`).
+- **No API for**: environment variables, mock server config, endpoint comments, or change history.
+
+These are Apidog API limitations as of March 2026, not plugin limitations. Workarounds are implemented where possible.
+
 ## Multi-Module Architecture
 
 A single MCP server instance manages multiple Apidog modules. Pass the module name (e.g. `"backend"`, `"payments"`) to each tool call — the server resolves it to the correct module ID from `APIDOG_MODULES`.
