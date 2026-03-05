@@ -72,4 +72,4 @@ A single MCP server instance manages multiple Apidog modules. Pass the module na
 
 ## License
 
-MIT
+[MIT](LICENSE)
