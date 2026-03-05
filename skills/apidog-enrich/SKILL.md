@@ -1,8 +1,8 @@
 ---
-name: apidog-enrich
 description: Enrich Apidog API documentation with summaries, descriptions, response
   schemas, and examples grounded in actual codebase logic. Use when the user wants
   to improve API docs quality, fill in missing fields, or add endpoint details.
+alwaysApply: false
 ---
 
 # Apidog Enrich
