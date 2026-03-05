@@ -71,6 +71,7 @@ Powered by [`@lstpsche/apidog-mcp`](https://www.npmjs.com/package/@lstpsche/apid
 
 | Command | Description |
 |---|---|
+| **apidog-configure** | Set up the Apidog plugin for the current project — creates config, updates .gitignore |
 | **analyze-api-docs** | Run a full documentation quality audit on an Apidog module |
 
 ## Limitations
