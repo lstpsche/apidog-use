@@ -2,12 +2,7 @@
   "mcpServers": {
     "apidog": {
       "command": "npx",
-      "args": ["-y", "@lstpsche/apidog-mcp"],
-      "env": {
-        "APIDOG_ACCESS_TOKEN": "${APIDOG_ACCESS_TOKEN}",
-        "APIDOG_PROJECT_ID": "${APIDOG_PROJECT_ID}",
-        "APIDOG_MODULES": "${APIDOG_MODULES}"
-      }
+      "args": ["-y", "@lstpsche/apidog-mcp"]
     }
   }
 }

@@ -6,27 +6,34 @@ Cursor plugin for managing [Apidog](https://apidog.com) API documentation. Provi
 
 ## Setup
 
-### 1. Get your Apidog credentials
+### 1. Install the plugin
+
+Install from the [Cursor Marketplace](https://cursor.com/marketplace) or add manually by cloning this repo.
+
+### 2. Get your Apidog credentials
 
 - **Access Token**: Apidog > Account Settings > API Access Tokens
 - **Project ID**: Open your project > Settings > Basic Settings > Project ID
 - **Module IDs**: Open each module's settings page to find its ID
 
-### 2. Set environment variables
+### 3. Configure your project
 
-Add these to your shell profile (`~/.zshrc`, `~/.bashrc`, etc.):
+Create `.apidog.json` in your project root (add it to `.gitignore`):
 
-```bash
-export APIDOG_ACCESS_TOKEN="your-token-here"
-export APIDOG_PROJECT_ID="your-project-id"
-export APIDOG_MODULES='{"backend":1234,"payments":5678}'
+```json
+{
+  "accessToken": "adgp_your_token_here",
+  "projectId": "1234567",
+  "modules": {
+    "backend": 1234,
+    "payments": 5678
+  }
+}
 ```
 
-The `APIDOG_MODULES` value is a JSON map of human-friendly names to Apidog module IDs. You'll use these names when calling MCP tools.
+The `modules` value maps human-friendly names to Apidog module IDs. You'll use these names when calling MCP tools.
 
-### 3. Install the plugin
-
-Install from the [Cursor Marketplace](https://cursor.com/marketplace) or add manually by cloning this repo.
+**Alternative:** You can also use environment variables (`APIDOG_ACCESS_TOKEN`, `APIDOG_PROJECT_ID`, `APIDOG_MODULES`) — they take precedence over `.apidog.json`. See the [MCP server docs](https://github.com/lstpsche/apidog-mcp) for details.
 
 ## What's Included
 
@@ -85,4 +92,4 @@ A single MCP server instance manages multiple Apidog modules. Pass the module na
 
 ## License
 
-[MIT](LICENSE)
+MIT
