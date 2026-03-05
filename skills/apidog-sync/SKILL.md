@@ -1,8 +1,8 @@
 ---
+name: apidog-sync
 description: Sync Apidog API documentation with the actual codebase. Use when the
   user wants to detect drift between code and docs, find undocumented endpoints,
   or update docs after code changes.
-alwaysApply: false
 ---
 
 # Apidog Sync

@@ -1,8 +1,8 @@
 ---
+name: apidog-lookup
 description: Look up API endpoints, schemas, and documentation structure from Apidog.
   Use when the user asks about API endpoints, available routes, request/response
   formats, or wants to browse API documentation.
-alwaysApply: false
 ---
 
 # Apidog Lookup
