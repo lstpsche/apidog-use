@@ -1,0 +1,16 @@
+---
+description: Conventions for working with Apidog MCP tools safely and effectively
+alwaysApply: false
+---
+
+When using Apidog MCP tools, follow these conventions:
+
+- Always specify the `module` parameter. Call `apidog_modules` first if unsure which modules are available.
+- Before bulk changes or imports, run `apidog_analyze` to understand current documentation state.
+- Before importing a spec, run `apidog_diff` to preview what will change.
+- Never call `apidog_wipe` without explicit user confirmation — it deletes all endpoints in a module.
+- Prefer `apidog_update` for single-endpoint changes over full spec imports.
+- Use `apidog_bulk_update` for batch metadata changes (tags, status, summaries) instead of updating endpoints one by one.
+- When creating endpoint cases with `apidog_create_cases`, always include both request and response examples.
+- After making changes, verify with `apidog_get` or `apidog_list` that updates were applied correctly.
+- Do not hallucinate endpoint definitions — always ground documentation in actual source code.

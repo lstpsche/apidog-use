@@ -1,0 +1,13 @@
+{
+  "name": "apidog-use",
+  "version": "1.0.0",
+  "description": "Manage Apidog API documentation from Cursor — import, export, diff, analyze, enrich, and bulk-edit OpenAPI specs and endpoint cases.",
+  "author": {
+    "name": "lstpsche"
+  },
+  "homepage": "https://github.com/lstpsche/apidog-mcp",
+  "repository": "https://github.com/lstpsche/apidog-cursor-plugin",
+  "license": "MIT",
+  "keywords": ["apidog", "openapi", "api-documentation", "mcp", "api"],
+  "logo": "assets/logo.svg"
+}

@@ -1,0 +1,18 @@
+---
+description: OpenAPI 3.1 best practices for API documentation managed through Apidog
+alwaysApply: false
+---
+
+When writing or updating OpenAPI documentation in Apidog:
+
+- Every endpoint must have a `summary` (short, one-line) and a `description` (detailed, user-facing).
+- Write summaries and descriptions from a business perspective, not implementation details.
+- Use `operationId` on every endpoint — camelCase, unique across the spec (e.g., `getUserProfile`, `listProducts`).
+- Use `$ref` to reference shared component schemas instead of duplicating definitions inline.
+- Include response schemas for all documented status codes (at minimum 200 and error codes like 400, 401, 403, 404, 422).
+- Add `example` or `examples` to request bodies and responses to make the documentation actionable.
+- Use appropriate HTTP status codes: 200 for success, 201 for creation, 204 for no-content, 400 for bad request, 401 for unauthorized, 403 for forbidden, 404 for not found, 422 for validation errors.
+- Tag endpoints consistently to enable logical grouping in the documentation UI.
+- Use `x-apidog-folder` to organize endpoints into a clear folder hierarchy in Apidog.
+- Mark deprecated endpoints with `deprecated: true` instead of deleting them.
+- Document path parameters, query parameters, and headers with types, descriptions, and whether they are required.
