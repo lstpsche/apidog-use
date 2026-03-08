@@ -1,7 +1,7 @@
 ---
 name: apidog-configure
 description: Configure the Apidog plugin for the current project. Creates .apidog.json
-  config file, registers MCP server, adds secrets to .gitignore, and guides through obtaining credentials.
+  config file, adds secrets to .gitignore, and guides through obtaining credentials.
 ---
 
 # Configure Apidog Plugin
@@ -17,7 +17,6 @@ Look for `.apidog.json` in the project root. If it already exists, read it and a
 - Add another project to the existing config
 - Update specific fields
 
-Also check `.cursor/mcp.json` for an existing `apidog` server entry.
 
 ### 2. Gather credentials
 
@@ -81,30 +80,7 @@ Write the config file to the project root.
 
 Both formats are supported. The single-project format is automatically treated as one project named "default". Use the multi-project format when managing more than one Apidog project.
 
-### 4. Register MCP server in `.cursor/mcp.json`
-
-Check if `.cursor/mcp.json` exists in the project root. If it does, read it and check for an existing `apidog` entry under `mcpServers`.
-
-**If no `apidog` entry exists**, add it:
-
-```json
-{
-  "mcpServers": {
-    "apidog": {
-      "command": "npx",
-      "args": ["-y", "@lstpsche/apidog-mcp"]
-    }
-  }
-}
-```
-
-If the file doesn't exist at all, create it with the above content. If other servers are already configured, merge the `apidog` entry into the existing `mcpServers` object.
-
-**Important**: The MCP server must be registered at the project level (`.cursor/mcp.json`) rather than via the plugin, because Cursor sets the working directory to the workspace root for project-level MCP servers. This allows the server to find `.apidog.json` via upward directory walking.
-
-Tell the user: "Registered the Apidog MCP server in `.cursor/mcp.json`. Cursor will start the server with your project root as the working directory, so it can find `.apidog.json` automatically."
-
-### 5. Add to `.gitignore`
+### 4. Add to `.gitignore`
 
 Check if `.gitignore` exists in the project root:
 - If it exists, check if `.apidog.json` is already listed. If not, append `.apidog.json` to it.
@@ -112,13 +88,15 @@ Check if `.gitignore` exists in the project root:
 
 Explain to the user: "Added `.apidog.json` to `.gitignore` so your access token stays out of version control."
 
-### 6. Verify the MCP server can connect
+### 5. Verify the MCP server can connect
 
-Tell the user to restart the MCP server from Cursor Settings > MCP (toggle off/on or click restart on the `apidog` entry). Then call `apidog_modules` to verify the configuration works. If it succeeds, show the list of projects and their modules. If it fails, help the user troubleshoot (wrong token, wrong project ID, etc.).
+Tell the user to restart the MCP server from Cursor Settings > MCP (toggle off/on or click restart on the `apidog` entry under the plugin). The server discovers `.apidog.json` by requesting workspace roots from Cursor via the MCP protocol, so it works regardless of the server's working directory.
+
+Then call `apidog_modules` to verify the configuration works. If it succeeds, show the list of projects and their modules. If it fails, help the user troubleshoot (wrong token, wrong project ID, etc.).
 
 For multi-project configs, verify each project individually by calling `apidog_modules` with the `project` parameter for each configured project name.
 
-### 7. Done
+### 6. Done
 
 Tell the user their Apidog plugin is configured and ready. Briefly mention:
 - They can use `apidog_list`, `apidog_get`, `apidog_export` to browse their API docs
@@ -129,18 +107,4 @@ Tell the user their Apidog plugin is configured and ready. Briefly mention:
 
 ### Advanced: `APIDOG_CONFIG_PATH`
 
-If `.apidog.json` is not in the project root or any parent directory, the user can set the `APIDOG_CONFIG_PATH` environment variable to an explicit file path. Add it to the MCP server env in `.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "apidog": {
-      "command": "npx",
-      "args": ["-y", "@lstpsche/apidog-mcp"],
-      "env": {
-        "APIDOG_CONFIG_PATH": "/absolute/path/to/.apidog.json"
-      }
-    }
-  }
-}
-```
+If `.apidog.json` is not in any workspace root or parent directory, the user can set the `APIDOG_CONFIG_PATH` environment variable to an explicit file path. This can be added to the plugin's MCP server env or to a project-level `.cursor/mcp.json` override.
